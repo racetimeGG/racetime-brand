@@ -1,0 +1,36 @@
+name: Release package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Determine version
+      run: echo ::set-env name=PKG_VERSION::$(date +'%Y-%m-%d')
+    - name: Create ZIP file
+      run: zip -r racetimeGG-brand.zip racetimeGG-brand
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.PKG_VERSION }}
+        release_name: ${{ env.PKG_VERSION }}
+        draft: false
+        prerelease: false
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: racetimeGG-brand.zip
+        asset_name: racetimeGG-brand.zip
+        asset_content_type: application/zip
