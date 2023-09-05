@@ -1,7 +1,6 @@
 # racetime.gg brand assets
 
 [![Discord](https://discordapp.com/api/guilds/660452709044060171/embed.png?style=shield)](https://discord.racetime.gg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/racetimeGG?style=social)](https://twitter.com/racetimeGG)
 
 This repository contains brand assets for racetime.gg. It is designed to be
 used by third parties to identify the site. Use of the images provided in this
